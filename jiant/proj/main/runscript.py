@@ -81,18 +81,18 @@ def setup_runner(
 
     """
     # TODO document why the distributed.only_first_process() context manager is being used here.
-    with distributed.only_first_process(local_rank=args.local_rank):
-        # load the model
-        jiant_model = jiant_model_setup.setup_jiant_model(
-            hf_pretrained_model_name_or_path=args.hf_pretrained_model_name_or_path,
-            model_config_path=args.model_config_path,
-            task_dict=jiant_task_container.task_dict,
-            taskmodels_config=jiant_task_container.taskmodels_config,
-        )
-        jiant_model_setup.delegate_load_from_path(
-            jiant_model=jiant_model, weights_path=args.model_path, load_mode=args.model_load_mode
-        )
-        jiant_model.to(quick_init_out.device)
+    
+    # load the model
+    jiant_model = jiant_model_setup.setup_jiant_model(
+        hf_pretrained_model_name_or_path=args.hf_pretrained_model_name_or_path,
+        model_config_path=args.model_config_path,
+        task_dict=jiant_task_container.task_dict,
+        taskmodels_config=jiant_task_container.taskmodels_config,
+    )
+    jiant_model_setup.delegate_load_from_path(
+        jiant_model=jiant_model, weights_path=args.model_path, load_mode=args.model_load_mode
+    )
+    jiant_model.to(quick_init_out.device)
 
     optimizer_scheduler = model_setup.create_optimizer(
         model=jiant_model,

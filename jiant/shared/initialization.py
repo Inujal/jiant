@@ -92,9 +92,6 @@ def init_cuda_from_args(no_cuda, local_rank, fp16, verbose=True):
         torch.cuda.set_device(local_rank)
         device = torch.device("cuda", local_rank)
         n_gpu = 1
-        # Initializes the distributed backend which will take care of synchronizing nodes/GPUs
-        # noinspection PyUnresolvedReferences
-        torch.distributed.init_process_group(backend="nccl")
     if verbose:
         print(
             "device: {} n_gpu: {}, distributed training: {}, 16-bits training: {}".format(

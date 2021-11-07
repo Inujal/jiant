@@ -169,10 +169,6 @@ def raw_special_model_setup(model, optimizer, fp16, fp16_opt_level, n_gpu, local
     """
     if fp16:
         model, optimizer = fp16ize(model=model, optimizer=optimizer, fp16_opt_level=fp16_opt_level)
-    if n_gpu > 1:
-        model = parallelize_gpu(model=model)
-    if local_rank != -1:
-        model = parallelize_dist(model=model, local_rank=local_rank)
     return model, optimizer
 
 

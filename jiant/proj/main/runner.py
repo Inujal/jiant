@@ -264,8 +264,6 @@ def run_val(
     # Reminder:
     #   val_dataloader contains mostly PyTorch-relevant info
     #   val_labels might contain more details information needed for full evaluation
-    if not local_rank == -1:
-        return
     jiant_model.eval()
     total_eval_loss = 0
     nb_eval_steps, nb_eval_examples = 0, 0
@@ -322,8 +320,6 @@ def run_test(
     verbose=True,
     return_preds=True,
 ):
-    if not local_rank == -1:
-        return
     jiant_model.eval()
     evaluation_scheme = evaluate.get_evaluation_scheme_for_task(task=task)
     eval_accumulator = evaluation_scheme.get_accumulator()
