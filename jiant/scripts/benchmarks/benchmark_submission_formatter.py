@@ -37,7 +37,7 @@ def main():
         task_names = benchmark.TASKS
 
     for task_name in task_names:
-        input_filepath = os.path.join(args.input_base_path, task_name, "test_preds.p")
+        input_filepath = os.path.join(args.input_base_path, "test_preds.p")
         output_filepath = os.path.join(
             os.path.abspath(args.output_path), benchmark.BENCHMARK_SUBMISSION_FILENAMES[task_name]
         )
